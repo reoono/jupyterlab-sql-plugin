@@ -4,7 +4,7 @@ import { IDisposable } from '@lumino/disposable';
 
 import { Toolbar } from '@jupyterlab/apputils';
 
-export interface JupyterLabSqlPage extends IDisposable {
+export interface IJupyterLabSqlPage extends IDisposable {
   readonly pageName: PageName;
   readonly content: Widget;
   readonly toolbar: Toolbar;

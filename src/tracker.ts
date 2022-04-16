@@ -3,7 +3,7 @@ import { WidgetTracker } from '@jupyterlab/apputils';
 import { JupyterLabSqlWidget } from './widget';
 
 export function createTracker(): WidgetTracker<JupyterLabSqlWidget> {
-  const namespace: string = 'jupyterlab-sql';
+  const namespace = 'jupyterlab-sql';
 
   const tracker = new WidgetTracker<JupyterLabSqlWidget>({
     namespace

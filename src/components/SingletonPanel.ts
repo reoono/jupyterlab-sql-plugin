@@ -3,13 +3,13 @@ import { SingletonLayout, Widget, LayoutItem } from '@lumino/widgets';
 import { Message } from '@lumino/messaging';
 
 export class SingletonPanel extends Widget {
-  onResize(_: Message) {
+  onResize(_: Message): void {
     if (this._item) {
       this._fitCurrentWidget();
     }
   }
 
-  onActivateRequest() {
+  onActivateRequest(): void {
     const widget = this.layout.widget;
     if (widget) {
       // Focus the content node if we aren't already focused on it or a
@@ -36,6 +36,5 @@ export class SingletonPanel extends Widget {
   }
 
   readonly layout = new SingletonLayout();
-  // @ts-ignore
-  private _item: LayoutItem;
+  private _item!: LayoutItem;
 }

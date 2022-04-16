@@ -23,24 +23,24 @@ export async function getTableStructure(
 export namespace TableStructureResponse {
   export type Type = ErrorResponse | SuccessResponse;
 
-  interface ErrorResponse {
+  type ErrorResponse = {
     responseType: 'error';
     responseData: ErrorResponseData;
-  }
+  };
 
-  interface SuccessResponse {
+  type SuccessResponse = {
     responseType: 'success';
     responseData: SuccessResponseData;
-  }
+  };
 
   type SuccessResponseData = {
     keys: Array<string>;
     rows: Array<Array<any>>;
   };
 
-  interface ErrorResponseData {
+  type ErrorResponseData = {
     message: string;
-  }
+  };
 
   export function createError(message: string): ErrorResponse {
     return {

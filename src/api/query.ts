@@ -13,26 +13,25 @@ export async function getForQuery(
     return Private.createErrorResponse(response.status);
   }
   const data = await response.json();
-  const validatedData = Private.validateBody(data);
-  return validatedData;
+  return data as ResponseModel.Type;
 }
 
 export namespace ResponseModel {
   export type Type = ErrorResponse | SuccessResponse;
 
-  interface ErrorResponse {
+  type ErrorResponse = {
     responseType: 'error';
     responseData: ErrorResponseData;
-  }
+  };
 
-  interface SuccessResponse {
+  type SuccessResponse = {
     responseType: 'success';
     responseData: SuccessResponseData;
-  }
+  };
 
-  interface ErrorResponseData {
+  type ErrorResponseData = {
     message: string;
-  }
+  };
 
   type SuccessResponseData =
     | {
@@ -90,9 +89,5 @@ namespace Private {
       const errorMessage = 'Unexpected response status from server';
       return ResponseModel.createError(errorMessage);
     }
-  }
-
-  export function validateBody(responseBody: any): ResponseModel.Type {
-    return responseBody;
   }
 }

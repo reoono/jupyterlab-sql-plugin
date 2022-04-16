@@ -4,21 +4,21 @@ import { DataGrid } from '@lumino/datagrid';
 export type RowSection = 'outside' | 'column-header' | 'row';
 export type ColumnSection = 'outside' | 'row-header' | 'column';
 
-export interface GridMouseEvent {
+export type GridMouseEvent = {
   row: Row;
   column: Column;
   rawEvent: MouseEvent;
-}
+};
 
-export interface Row {
+export type Row = {
   section: RowSection;
   index: number | null;
-}
+};
 
-export interface Column {
+export type Column = {
   section: ColumnSection;
   index: number | null;
-}
+};
 
 export function addMouseEventListener(
   eventType: 'click' | 'contextmenu' | 'dblclick',

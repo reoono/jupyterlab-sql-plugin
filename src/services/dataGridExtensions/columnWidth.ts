@@ -11,8 +11,12 @@ export function fitColumnWidths(
   grid: DataGrid,
   renderer: TextRenderer,
   options: FitColumnWidths.IOptions = {}
-) {
-  const estimator = new ColumnWidthEstimator(grid.dataModel!, renderer, options);
+): void {
+  const estimator = new ColumnWidthEstimator(
+    grid.dataModel!,
+    renderer,
+    options
+  );
 
   const widths = estimator.getColumnWidths();
   widths.forEach((width, column) => {
@@ -30,10 +34,10 @@ export namespace FitColumnWidths {
     characterScaleFactor?: number;
   }
 
-  export const defaultRowsToInspect: number = 100;
-  export const defaultMinWidth: number = 40;
-  export const defaultMaxWidth: number = 300;
-  export const characterScaleFactor: number = 0.65;
+  export const defaultRowsToInspect = 100;
+  export const defaultMinWidth = 40;
+  export const defaultMaxWidth = 300;
+  export const characterScaleFactor = 0.65;
 }
 
 class ColumnWidthEstimator {

@@ -60,7 +60,7 @@ export namespace ToolbarItems {
       this.setLoading(false);
     }
 
-    setLoading(isLoading: boolean) {
+    setLoading(isLoading: boolean): void {
       if (isLoading) {
         this.removeClass('jp-CircleIcon');
         this.addClass('jp-FilledCircleIcon');

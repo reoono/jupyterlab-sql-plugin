@@ -51,5 +51,5 @@ export class ResultsTable implements IDisposable {
   }
 
   private readonly _table: Table;
-  private _isDisposed: boolean = false;
+  private _isDisposed = false;
 }

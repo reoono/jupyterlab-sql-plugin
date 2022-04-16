@@ -14,7 +14,7 @@ import { Toolbar } from '@jupyterlab/apputils';
 
 import * as Api from '../api';
 
-import { JupyterLabSqlPage, PageName } from '../page';
+import { IJupyterLabSqlPage, PageName } from '../page';
 
 import { proxyFor } from '../services';
 
@@ -32,7 +32,7 @@ namespace QueryPage {
   }
 }
 
-export class QueryPage implements JupyterLabSqlPage {
+export class QueryPage implements IJupyterLabSqlPage {
   constructor(options: QueryPage.IOptions) {
     this._onExecutionStarted = this._onExecutionStarted.bind(this);
     this._onExecutionFinished = this._onExecutionFinished.bind(this);
@@ -64,11 +64,11 @@ export class QueryPage implements JupyterLabSqlPage {
     return this._sqlStatementChanged;
   }
 
-  get isDisposed() {
+  get isDisposed(): boolean {
     return this._disposables.isDisposed;
   }
 
-  dispose() {
+  dispose(): void {
     return this._disposables.dispose();
   }
 
@@ -146,8 +146,7 @@ class Content extends BoxPanel {
 
   readonly editor: IEditor;
   readonly response: IResponse;
-  // @ts-ignore
-  private _lastRequestId: string;
+  private _lastRequestId = '';
   private readonly _sqlStatementChanged: ISignal<this, string>;
   private readonly _executionStarted: Signal<this, void> = new Signal(this);
   private readonly _executionFinished: Signal<this, void> = new Signal(this);

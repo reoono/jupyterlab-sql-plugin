@@ -25,10 +25,11 @@ export class QueryToolbar extends Toolbar {
     this._backButtonClicked.emit(void 0);
   }
 
-  setLoading(isLoading: boolean) {
+  setLoading(isLoading: boolean): void {
     this._loadingIcon.setLoading(isLoading);
   }
 
-  private readonly _loadingIcon: ToolbarItems.LoadingIcon = new ToolbarItems.LoadingIcon();
+  private readonly _loadingIcon: ToolbarItems.LoadingIcon =
+    new ToolbarItems.LoadingIcon();
   private readonly _backButtonClicked: Signal<this, void> = new Signal(this);
 }
