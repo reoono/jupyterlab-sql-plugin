@@ -20,8 +20,6 @@ import { createTracker } from './tracker';
 
 import { PageName } from './page';
 
-import { requestAPI } from './handler';
-
 import '../style/index.css';
 
 function activate(
@@ -48,16 +46,6 @@ function activate(
         );
       });
   }
-
-  requestAPI<any>('get_example')
-    .then(data => {
-      console.log(data);
-    })
-    .catch(reason => {
-      console.error(
-        `The jupyterlab_sql_plugin server extension appears to be missing.\n${reason}`
-      );
-    });
 
   const tracker: WidgetTracker<JupyterLabSqlWidget> = createTracker();
   const command = 'jupyterlab-sql:open';
