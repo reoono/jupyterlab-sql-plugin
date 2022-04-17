@@ -12,8 +12,10 @@ export interface IConnectionEditorModel {
   readonly connectionUrlChanged: ISignal<this, string>;
 }
 
-export class ConnectionEditorModel extends VDomModel
-  implements IConnectionEditorModel {
+export class ConnectionEditorModel
+  extends VDomModel
+  implements IConnectionEditorModel
+{
   constructor(initialConnectionUrl: string) {
     super();
     this._connectionUrl = initialConnectionUrl;
@@ -51,11 +53,11 @@ export class ConnectionEditor extends VDomRenderer<ConnectionEditorModel> {
     return editor;
   }
 
-  onActivateRequest() {
+  onActivateRequest(): void {
     this.node.querySelector('input')!.focus();
   }
 
-  render() {
+  render(): JSX.Element | null {
     if (!this.model) {
       return null;
     } else {
@@ -166,19 +168,19 @@ class ConnectionInformationEdit extends React.Component<
 }
 
 namespace ConnectionInformationEdit {
-  export interface Props {
+  export type Props = {
     initialConnectionUrl: string;
     onFinishEdit: (newConnectionUrl: string) => void;
     onConnectionUrlChanged: (newConnectionString: string) => void;
-  }
+  };
 
-  export interface State {
+  export type State = {
     connectionUrl: string;
     focused: boolean;
-  }
+  };
 }
 
-class ConnectionInformationHelper extends React.Component<{}> {
+class ConnectionInformationHelper extends React.Component<unknown> {
   render() {
     return (
       <details className="jp-RenderedHTMLCommon">

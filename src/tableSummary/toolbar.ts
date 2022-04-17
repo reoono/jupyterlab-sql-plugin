@@ -31,7 +31,7 @@ export class TableSummaryToolbar extends Toolbar {
     return this._refreshButtonClicked;
   }
 
-  setLoading(isLoading: boolean) {
+  setLoading(isLoading: boolean): void {
     this._loadingIcon.setLoading(isLoading);
   }
 
@@ -43,7 +43,8 @@ export class TableSummaryToolbar extends Toolbar {
     this._refreshButtonClicked.emit(void 0);
   }
 
-  private readonly _loadingIcon: ToolbarItems.LoadingIcon = new ToolbarItems.LoadingIcon();
+  private readonly _loadingIcon: ToolbarItems.LoadingIcon =
+    new ToolbarItems.LoadingIcon();
   private readonly _backButtonClicked: Signal<this, void> = new Signal(this);
   private readonly _refreshButtonClicked: Signal<this, void> = new Signal(this);
 }

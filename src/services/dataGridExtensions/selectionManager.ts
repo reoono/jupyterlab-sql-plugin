@@ -1,10 +1,10 @@
 import { ISignal, Signal } from '@lumino/signaling';
 import { DataModel } from '@lumino/datagrid';
 
-export interface BodyCellIndex {
+export type BodyCellIndex = {
   rowIndex: number;
   columnIndex: number;
-}
+};
 
 export class SelectionManager {
   constructor(model: DataModel) {

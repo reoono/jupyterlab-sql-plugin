@@ -10,7 +10,7 @@ export function getFontWidth(font: string): number {
 
   // Normalize the font.
   Private.fontMeasurementGC.font = font;
-  let normFont = Private.fontMeasurementGC.font;
+  const normFont = Private.fontMeasurementGC.font;
 
   // Set the font on the measurement node.
   Private.fontMeasurementNode.style.font = normFont;
@@ -45,7 +45,7 @@ namespace Private {
    * The DOM node used for font height measurement.
    */
   export const fontMeasurementNode = (() => {
-    let node = document.createElement('div');
+    const node = document.createElement('div');
     node.style.position = 'absolute';
     node.style.top = '-99999px';
     node.style.left = '-99999px';
@@ -58,7 +58,7 @@ namespace Private {
    * The GC used for font measurement.
    */
   export const fontMeasurementGC = (() => {
-    let canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas');
     canvas.width = 0;
     canvas.height = 0;
     return canvas.getContext('2d')!;

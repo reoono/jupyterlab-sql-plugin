@@ -167,7 +167,7 @@ export class Table implements IDisposable {
     const renderer = this._textRendererForSelection(
       this._selectionManager.selection
     );
-    this._grid.cellRenderers.update({'body': renderer});
+    this._grid.cellRenderers.update({ body: renderer });
   }
 
   private _textRendererForSelection(
@@ -181,14 +181,14 @@ export class Table implements IDisposable {
     } else {
       const selectedRow = selectedCell.rowIndex;
       const selectedColumn = selectedCell.columnIndex;
-      backgroundColor = ({ row, column }: CellRenderer.CellConfig ) => {
+      backgroundColor = ({ row, column }: CellRenderer.CellConfig) => {
         if (row === selectedRow && column === selectedColumn) {
           return Colors.selectedBackgroundColor;
         } else {
           return Colors.unselectedBackgroundColor;
         }
       };
-      textColor = ({ row, column }: CellRenderer.CellConfig ) => {
+      textColor = ({ row, column }: CellRenderer.CellConfig) => {
         if (row === selectedRow && column === selectedColumn) {
           return Colors.selectedTextColor;
         } else {
@@ -209,7 +209,7 @@ export class Table implements IDisposable {
     this,
     DataGridExtensions.BodyCellIndex
   > = new Signal(this);
-  private _isDisposed: boolean = false;
+  private _isDisposed = false;
 }
 
 class TableDataModel extends DataModel {

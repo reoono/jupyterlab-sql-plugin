@@ -8,7 +8,7 @@ import { Toolbar } from '@jupyterlab/apputils';
 
 import { ConnectionEditor, ConnectionEditorModel } from './connectionEditor';
 
-import { JupyterLabSqlPage, PageName } from '../page';
+import { IJupyterLabSqlPage, PageName } from '../page';
 
 import { proxyFor } from '../services';
 
@@ -18,7 +18,7 @@ namespace ConnectionPage {
   }
 }
 
-export class ConnectionPage implements JupyterLabSqlPage {
+export class ConnectionPage implements IJupyterLabSqlPage {
   constructor(options: ConnectionPage.IOptions) {
     const { initialConnectionString } = options;
     this._content = new Content(initialConnectionString);
@@ -47,11 +47,11 @@ export class ConnectionPage implements JupyterLabSqlPage {
     return this._toolbar;
   }
 
-  get isDisposed() {
+  get isDisposed(): boolean {
     return this._disposables.isDisposed;
   }
 
-  dispose() {
+  dispose(): void {
     return this._disposables.dispose();
   }
 

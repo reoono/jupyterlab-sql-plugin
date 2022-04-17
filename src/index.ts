@@ -20,41 +20,35 @@ import { createTracker } from './tracker';
 
 import { PageName } from './page';
 
-import { requestAPI } from './handler';
-
 import '../style/index.css';
 
-function activate (
+function activate(
   app: JupyterFrontEnd,
   palette: ICommandPalette,
   launcher: ILauncher | null,
   editorServices: IEditorServices,
   restorer: ILayoutRestorer,
   settingRegistry: ISettingRegistry | null
-) {
+): void {
   if (settingRegistry) {
     settingRegistry
       .load(plugin.id)
       .then(settings => {
-        console.log('jupyterlab-sql-plugin settings loaded:', settings.composite);
+        console.log(
+          'jupyterlab-sql-plugin settings loaded:',
+          settings.composite
+        );
       })
       .catch(reason => {
-        console.error('Failed to load settings for jupyterlab-sql-plugin.', reason);
+        console.error(
+          'Failed to load settings for jupyterlab-sql-plugin.',
+          reason
+        );
       });
   }
 
-  requestAPI<any>('get_example')
-    .then(data => {
-      console.log(data);
-    })
-    .catch(reason => {
-      console.error(
-        `The jupyterlab_sql_plugin server extension appears to be missing.\n${reason}`
-      );
-    });
-  
-    const tracker: WidgetTracker<JupyterLabSqlWidget> = createTracker();
-  const command: string = 'jupyterlab-sql:open';
+  const tracker: WidgetTracker<JupyterLabSqlWidget> = createTracker();
+  const command = 'jupyterlab-sql:open';
 
   restorer.restore(tracker, {
     command,

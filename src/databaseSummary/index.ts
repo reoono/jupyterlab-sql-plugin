@@ -12,12 +12,12 @@ import * as Api from '../api';
 
 import { proxyFor } from '../services';
 
-import { JupyterLabSqlPage, PageName } from '../page';
+import { IJupyterLabSqlPage, PageName } from '../page';
 
 import { DatabaseSummaryToolbar } from './toolbar';
 
 import {
-  DatabaseSummaryIModel,
+  IDatabaseSummaryIModel,
   DatabaseSummaryModel,
   DatabaseSummaryWidget
 } from './content';
@@ -28,7 +28,7 @@ namespace DatabaseSummaryPage {
   }
 }
 
-export class DatabaseSummaryPage implements JupyterLabSqlPage {
+export class DatabaseSummaryPage implements IJupyterLabSqlPage {
   constructor(options: DatabaseSummaryPage.IOptions) {
     this._onRefresh = this._onRefresh.bind(this);
     this._content = new Content(options);
@@ -62,11 +62,11 @@ export class DatabaseSummaryPage implements JupyterLabSqlPage {
     return this._navigateToTable;
   }
 
-  get isDisposed() {
+  get isDisposed(): boolean {
     return this._disposables.isDisposed;
   }
 
-  dispose() {
+  dispose(): void {
     return this._disposables.dispose();
   }
 
@@ -138,8 +138,7 @@ class Content extends SingletonPanel {
   }
 
   private readonly _connectionUrl: string;
-  // @ts-ignore
-  private _databaseSummaryModel: DatabaseSummaryIModel | null;
+  private _databaseSummaryModel: IDatabaseSummaryIModel | null = null;
   private readonly _customQueryClicked: Signal<this, void> = new Signal<
     this,
     void

@@ -16,8 +16,7 @@ import { DatabaseSummaryPage } from './databaseSummary';
 
 import { TableSummaryPage } from './tableSummary';
 
-import { JupyterLabSqlPage, PageName } from './page';
-
+import { IJupyterLabSqlPage, PageName } from './page';
 
 namespace JupyterLabSqlWidget {
   export interface IOptions {
@@ -119,7 +118,7 @@ export class JupyterLabSqlWidget extends Widget {
     (<BoxLayout>this.layout).insertWidget(0, this._toolbar);
   }
 
-  private set page(newPage: JupyterLabSqlPage) {
+  private set page(newPage: IJupyterLabSqlPage) {
     const oldPage = this._page;
     if (oldPage !== newPage) {
       this.content.widget = newPage.content;
@@ -233,8 +232,8 @@ export class JupyterLabSqlWidget extends Widget {
   private _connectionUrl: string;
   private _tableName: string;
   private _toolbar: Toolbar | null = null;
-  private _sqlStatement: string = '';
-  private _page: JupyterLabSqlPage | null = null;
+  private _sqlStatement = '';
+  private _page: IJupyterLabSqlPage | null = null;
   private readonly content: SingletonPanel;
 
   private readonly _pageChanged: Signal<this, void> = new Signal(this);

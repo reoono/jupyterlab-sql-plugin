@@ -2,6 +2,7 @@ include LICENSE
 include *.md
 include pyproject.toml
 recursive-include jupyter-config *.json
+recursive-include jupyterlab_sql_plugin *.json
 
 include package.json
 include install.json

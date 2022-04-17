@@ -10,7 +10,7 @@ import { PreWidget, SingletonPanel, ResultsTable } from '../components';
 
 import * as Api from '../api';
 
-import { JupyterLabSqlPage, PageName } from '../page';
+import { IJupyterLabSqlPage, PageName } from '../page';
 
 import { proxyFor } from '../services';
 
@@ -23,7 +23,7 @@ export namespace TableSummaryPage {
   }
 }
 
-export class TableSummaryPage implements JupyterLabSqlPage {
+export class TableSummaryPage implements IJupyterLabSqlPage {
   constructor(options: TableSummaryPage.IOptions) {
     this._onRefresh = this._onRefresh.bind(this);
     this._content = new Content(options);
@@ -49,11 +49,11 @@ export class TableSummaryPage implements JupyterLabSqlPage {
     return this._navigateBack;
   }
 
-  get isDisposed() {
+  get isDisposed(): boolean {
     return this._disposables.isDisposed;
   }
 
-  dispose() {
+  dispose(): void {
     return this._disposables.dispose();
   }
 

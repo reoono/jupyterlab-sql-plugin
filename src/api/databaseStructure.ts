@@ -18,23 +18,23 @@ export async function getDatabaseStructure(
   return data;
 }
 
-export interface DatabaseObjects {
+export type DatabaseObjects = {
   tables: Array<string>;
   views: Array<string>;
-}
+};
 
 export namespace DatabaseStructureResponse {
   export type Type = ErrorResponse | SuccessResponse;
 
-  interface ErrorResponse {
+  type ErrorResponse = {
     responseType: 'error';
     responseData: ErrorResponseData;
-  }
+  };
 
-  interface SuccessResponse {
+  type SuccessResponse = {
     responseType: 'success';
     responseData: SuccessResponseData;
-  }
+  };
 
   type SuccessResponseData = {
     tables: Array<string>;
@@ -65,7 +65,7 @@ export namespace DatabaseStructureResponse {
     response: Type,
     onSuccess: (_: DatabaseObjects) => U,
     onError: (_: ErrorResponseData) => U
-  ) {
+  ): U | undefined {
     if (response.responseType === 'error') {
       return onError(response.responseData);
     } else if (response.responseType === 'success') {

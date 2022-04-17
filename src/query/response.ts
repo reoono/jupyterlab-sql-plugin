@@ -33,7 +33,7 @@ export class ResponseWidget extends SingletonPanel {
     super.dispose();
   }
 
-  setResponse(response: Api.ResponseModel.Type) {
+  setResponse(response: Api.ResponseModel.Type): void {
     this._disposeTable();
     Api.ResponseModel.match(
       response,

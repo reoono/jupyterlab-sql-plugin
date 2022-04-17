@@ -8,13 +8,15 @@ import { Signal, ISignal } from '@lumino/signaling';
 
 import { VDomModel, VDomRenderer } from '@jupyterlab/apputils';
 
-export interface DatabaseSummaryIModel extends IDisposable {
+export interface IDatabaseSummaryIModel extends IDisposable {
   navigateToTable: ISignal<this, string>;
   navigateToCustomQuery: ISignal<this, void>;
 }
 
-export class DatabaseSummaryModel extends VDomModel
-  implements DatabaseSummaryIModel {
+export class DatabaseSummaryModel
+  extends VDomModel
+  implements IDatabaseSummaryIModel
+{
   constructor(tables: Array<string>) {
     super();
     this.tables = tables;
@@ -30,11 +32,11 @@ export class DatabaseSummaryModel extends VDomModel
     return this._navigateToCustomQuery;
   }
 
-  onNavigateToTable(tableName: string) {
+  onNavigateToTable(tableName: string): void {
     this._navigateToTable.emit(tableName);
   }
 
-  onNavigateToCustomQuery() {
+  onNavigateToCustomQuery(): void {
     this._navigateToCustomQuery.emit(void 0);
   }
 
@@ -54,7 +56,7 @@ export class DatabaseSummaryWidget extends VDomRenderer<DatabaseSummaryModel> {
     return tableList;
   }
 
-  render() {
+  render(): JSX.Element | null {
     if (!this.model) {
       return null;
     } else {
@@ -71,15 +73,15 @@ export class DatabaseSummaryWidget extends VDomRenderer<DatabaseSummaryModel> {
 }
 
 namespace TableList {
-  export interface Props {
+  export type Props = {
     tableNames: Array<string>;
     onNavigateToTable: (tableName: string) => void;
     onNavigateToCustomQuery: () => void;
-  }
+  };
 
-  export interface State {
+  export type State = {
     selectedItem: number | null;
-  }
+  };
 }
 
 class TableList extends React.Component<TableList.Props, TableList.State> {
@@ -96,11 +98,8 @@ class TableList extends React.Component<TableList.Props, TableList.State> {
   }
 
   render() {
-    const {
-      tableNames,
-      onNavigateToTable,
-      onNavigateToCustomQuery
-    } = this.props;
+    const { tableNames, onNavigateToTable, onNavigateToCustomQuery } =
+      this.props;
     const { selectedItem } = this.state;
     const tableItems = tableNames.map((tableName, i) => (
       <TableListItem
@@ -125,12 +124,12 @@ class TableList extends React.Component<TableList.Props, TableList.State> {
 }
 
 namespace TableListItem {
-  export interface Props {
+  export type Props = {
     tableName: string;
     selected: boolean;
     onClick: () => void;
     onDoubleClick: () => void;
-  }
+  };
 }
 
 class TableListItem extends React.Component<TableListItem.Props> {
@@ -154,9 +153,9 @@ class TableListItem extends React.Component<TableListItem.Props> {
 }
 
 namespace CustomQueryItem {
-  export interface Props {
+  export type Props = {
     onClick: () => void;
-  }
+  };
 }
 
 class CustomQueryItem extends React.Component<CustomQueryItem.Props> {
@@ -176,9 +175,9 @@ class CustomQueryItem extends React.Component<CustomQueryItem.Props> {
 }
 
 namespace ListHeader {
-  export interface Props {
+  export type Props = {
     headerText: string;
-  }
+  };
 }
 
 class ListHeader extends React.Component<ListHeader.Props> {
