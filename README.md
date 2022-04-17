@@ -1,6 +1,6 @@
 # jupyterlab_sql_plugin
 
-[![Github Actions Status](https://github.com/reoono/jupyterlab-sql-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/reoono/jupyterlab-sql-plugin/actions/workflows/build.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reoono/jupyterlab-sql-plugin/main?urlpath=lab)
+[![Github Actions Status](https://github.com/reoono/jupyterlab-sql-plugin/workflows/Build/badge.svg)](https://github.com/reoono/jupyterlab-sql-plugin/actions/workflows/build.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/reoono/jupyterlab-sql-plugin/main?urlpath=lab)
 A JupyterLab extension.
 
 This extension is composed of a Python package named `jupyterlab_sql_plugin`
