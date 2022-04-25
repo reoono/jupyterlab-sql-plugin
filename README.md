@@ -4,4 +4,4 @@
 
 A port of jupyterlab-sql to work with JupyterLab 3.x.
 
-I am currently developing this wonderful extension to work in a more recent environment!
+I am currently developing this wonderful extension to work in a more recent environment.
