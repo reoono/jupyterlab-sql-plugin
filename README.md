@@ -5,4 +5,3 @@
 A port of [jupyterlab-sql](https://github.com/pbugnion/jupyterlab-sql) to work with JupyterLab 3.x.
 
 I am currently developing this wonderful extension to work in a more recent environment.
-comm
