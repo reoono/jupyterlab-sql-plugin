@@ -1,8 +1,8 @@
 import json
 from contextlib import contextmanager
 
-from notebook.utils import url_path_join
-from notebook.base.handlers import IPythonHandler
+from jupyter_server.utils import url_path_join
+from jupyter_server.base.handlers import APIHandler
 import tornado.ioloop
 
 from . import responses
@@ -11,7 +11,7 @@ from . import request_decoder
 from .executor import Executor
 
 
-class SqlQueryHandler(IPythonHandler):
+class SqlQueryHandler(APIHandler):
     def initialize(self, executor):
         self._executor = executor
         self._validator = schema_loader.load("sql-query.json")
@@ -31,6 +31,7 @@ class SqlQueryHandler(IPythonHandler):
             response = responses.error(str(e))
             return self.finish(json.dumps(response))
 
+    @tornado.web.authenticated
     async def post(self):
         with self.decoded_request() as (query, connection_url):
             ioloop = tornado.ioloop.IOLoop.current()
@@ -49,7 +50,7 @@ class SqlQueryHandler(IPythonHandler):
             self.finish(json.dumps(response))
 
 
-class StructureHandler(IPythonHandler):
+class StructureHandler(APIHandler):
     def initialize(self, executor):
         self._executor = executor
         self._validator = schema_loader.load("database-structure.json")
@@ -68,6 +69,7 @@ class StructureHandler(IPythonHandler):
             response = responses.error(str(e))
             return self.finish(json.dumps(response))
 
+    @tornado.web.authenticated
     async def post(self):
         with self.decoded_request() as connection_url:
             ioloop = tornado.ioloop.IOLoop.current()
@@ -83,7 +85,7 @@ class StructureHandler(IPythonHandler):
             return self.finish(json.dumps(response))
 
 
-class TableStructureHandler(IPythonHandler):
+class TableStructureHandler(APIHandler):
     def initialize(self, executor):
         self._executor = executor
         self._validator = schema_loader.load("table-structure.json")
@@ -103,6 +105,7 @@ class TableStructureHandler(IPythonHandler):
             response = responses.error(str(e))
             return self.finish(json.dumps(response))
 
+    @tornado.web.authenticated
     async def post(self):
         with self.decoded_request() as (connection_url, table_name):
             ioloop = tornado.ioloop.IOLoop.current()
@@ -120,12 +123,11 @@ class TableStructureHandler(IPythonHandler):
 
 def form_route(web_app, endpoint):
     return url_path_join(
-        web_app.settings["base_url"], "/jupyterlab-sql/", endpoint
+        web_app.settings["base_url"], "jupyterlab-sql", endpoint
     )
 
 
-def register_handlers(nbapp):
-    web_app = nbapp.web_app
+def register_handlers(web_app):
     host_pattern = ".*$"
     executor = Executor()
     handlers = [
