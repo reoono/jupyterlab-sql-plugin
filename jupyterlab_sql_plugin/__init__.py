@@ -35,7 +35,7 @@ def _load_jupyter_server_extension(server_app):
     server_app: jupyterlab.labapp.LabApp
         JupyterLab application instance
     """
-    register_handlers(server_app)
+    register_handlers(server_app.web_app)
     server_app.log.info("Registered {name} server extension".format(**data))
 
 

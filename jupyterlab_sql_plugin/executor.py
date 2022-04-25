@@ -21,7 +21,7 @@ class QueryResult:
     @classmethod
     def from_sqlalchemy_result(cls, result):
         if result.returns_rows:
-            keys = result.keys()
+            keys = list(result.keys())
             rows = [make_row_serializable(row) for row in result]
             return cls(keys, rows)
         else:

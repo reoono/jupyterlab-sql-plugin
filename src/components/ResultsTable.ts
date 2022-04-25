@@ -46,7 +46,7 @@ export class ResultsTable implements IDisposable {
   private _copySelectionToClipboard(): void {
     const selectionValue = this._table.selectionValue;
     if (selectionValue !== null) {
-      Clipboard.copyToSystem(selectionValue);
+      Clipboard.copyToSystem(String(selectionValue));
     }
   }
 
