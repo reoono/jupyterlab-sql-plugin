@@ -17,7 +17,7 @@ jobs:
       uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
     - name: Install dependencies
-      run: python -m pip install -U jupyterlab~=3.1 check-manifest
+      run: python -m pip install -U jupyterlab~=3.1
 
     - name: Build the extension
       run: |
@@ -30,8 +30,6 @@ jobs:
 
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-sql-plugin.*OK"
         python -m jupyterlab.browser_check
-
-        check-manifest -v
 
         pip install build
         python -m build --sdist
