@@ -6,10 +6,8 @@ import {
 
 import { ISignal, Signal } from '@lumino/signaling';
 
-import { Widget } from '@lumino/widgets';
-
 export interface IEditor {
-  readonly widget: Widget;
+  readonly widget: EditorWidget;
 
   readonly value: string;
   readonly execute: ISignal<this, string>;
@@ -33,7 +31,7 @@ export class Editor implements IEditor {
     return this._model.value.text;
   }
 
-  get widget(): Widget {
+  get widget(): EditorWidget {
     return this._widget;
   }
 
@@ -67,10 +65,14 @@ export class EditorWidget extends CodeEditorWrapper {
 
   _onKeydown(event: KeyboardEvent): boolean {
     if ((event.shiftKey || event.ctrlKey) && event.key === 'Enter') {
-      this._executeCurrent.emit(void 0);
+      this.run();
       return true;
     }
     return false;
+  }
+
+  run(): void {
+    this._executeCurrent.emit(void 0);
   }
 
   private _executeCurrent = new Signal<this, void>(this);
