@@ -4,7 +4,7 @@ from jsonschema import Draft4Validator as Validator
 
 import pytest
 
-from jupyterlab_sql.request_decoder import decode, RequestDecodeError
+from jupyterlab_sql_plugin.request_decoder import decode, RequestDecodeError
 
 
 test_schema = {

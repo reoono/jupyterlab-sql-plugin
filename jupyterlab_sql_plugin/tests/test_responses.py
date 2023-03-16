@@ -1,5 +1,5 @@
-from jupyterlab_sql.models import DatabaseObjects
-from jupyterlab_sql.responses import success_with_database_objects
+from jupyterlab_sql_plugin.models import DatabaseObjects
+from jupyterlab_sql_plugin.responses import success_with_database_objects
 
 
 def test_success_with_database_objects():

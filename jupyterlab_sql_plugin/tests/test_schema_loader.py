@@ -1,4 +1,4 @@
-from jupyterlab_sql.schema_loader import load
+from jupyterlab_sql_plugin.schema_loader import load
 
 
 def test_load_schema():
