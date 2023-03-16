@@ -1,6 +1,6 @@
 from unittest.mock import Mock
 
-from jupyterlab_sql.cache import Cache
+from jupyterlab_sql_plugin.cache import Cache
 
 
 def test_set_and_retrieve_value():
