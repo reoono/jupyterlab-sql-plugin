@@ -77,7 +77,7 @@ export class QueryPage implements IJupyterLabSqlPage {
   private _onRun(): void {
     this._content.editor.widget.run();
   }
-  
+
   private _onExecutionStarted(): void {
     this._toolbar.setLoading(true);
   }
