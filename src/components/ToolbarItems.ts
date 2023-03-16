@@ -45,6 +45,21 @@ export namespace ToolbarItems {
     }
   }
 
+  export namespace RunButton {
+    export interface IOptions {
+      onClick: () => void;
+    }
+  }
+
+  export class RunButton extends ToolbarButton {
+    constructor(options: RunButton.IOptions) {
+      super({
+        iconClass: 'jp-RunIcon jp-Icon jp-Icon-16',
+        onClick: options.onClick
+      });
+    }
+  }
+
   export namespace RefreshButton {
     export interface IOptions {
       onClick: () => void;

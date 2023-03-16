@@ -34,11 +34,13 @@ namespace QueryPage {
 
 export class QueryPage implements IJupyterLabSqlPage {
   constructor(options: QueryPage.IOptions) {
+    this._onRun = this._onRun.bind(this);
     this._onExecutionStarted = this._onExecutionStarted.bind(this);
     this._onExecutionFinished = this._onExecutionFinished.bind(this);
     this._content = new Content(options);
     this._toolbar = new QueryToolbar(options.connectionUrl);
     this._backButtonClicked = proxyFor(this._toolbar.backButtonClicked, this);
+    this._toolbar.runButtonClicked.connect(this._onRun);
     this._sqlStatementChanged = proxyFor(
       this._content.sqlStatementChanged,
       this
@@ -72,6 +74,10 @@ export class QueryPage implements IJupyterLabSqlPage {
     return this._disposables.dispose();
   }
 
+  private _onRun(): void {
+    this._content.editor.widget.run();
+  }
+  
   private _onExecutionStarted(): void {
     this._toolbar.setLoading(true);
   }
