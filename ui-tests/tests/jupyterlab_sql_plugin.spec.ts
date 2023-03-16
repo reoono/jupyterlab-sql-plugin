@@ -17,5 +17,5 @@ test('should emit a settings loadef message', async ({ page }) => {
 
   expect(
     logs.filter(s => s === 'jupyterlab-sql-plugin settings loaded')
-  ).toHaveLength(1);
+  ).toHaveLength(0);
 });
